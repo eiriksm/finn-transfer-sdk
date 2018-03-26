@@ -1,0 +1,16 @@
+{
+    "name": "eiriksm/finn-transfer-sdk",
+    "description": "SDK for communicating with FINN transfer API",
+    "type": "library",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {"eiriksm\\FinnTransfer\\": "src"}
+    },
+    "authors": [
+        {
+            "name": "Eirik S. Morland",
+            "email": "eirik@morland.no"
+        }
+    ],
+    "require": {}
+}
