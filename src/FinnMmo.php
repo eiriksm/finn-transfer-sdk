@@ -12,12 +12,47 @@ class FinnMmo implements TransferrableInterface
    */
   protected $client;
 
-  protected $images;
+  /**
+   * Zip file contents.
+   *
+   * @var string
+   */
+  protected $zip;
 
-  protected $orderNo;
+  protected $xml;
+
+  /**
+   * @return mixed
+   */
+  public function getXml() {
+    return $this->xml;
+  }
+
+  /**
+   * @param mixed $xml
+   */
+  public function setXml($xml) {
+    $this->xml = $xml;
+  }
+
+  /**
+   * @return mixed
+   */
+  public function getZip() {
+    return $this->zip;
+  }
+
+  /**
+   * @param mixed $zip
+   */
+  public function setZip($zip) {
+    $this->zip = $zip;
+  }
 
   public function __construct() {
-    $this->client = $client;
+    // First get the finn client.
+    $this->client = new Client();
+    $this->client->setIsZip(true);
   }
 
   /**
@@ -29,9 +64,9 @@ class FinnMmo implements TransferrableInterface
 
   public function transfer(\GuzzleHttp\Client $client) {
     // First get the finn client.
-    $this->client = new Client();
+    $this->client->setRequestBody($this->getXml());
     $this->client->setClient($client);
-    $req = $this->client->transfer('');
+    $req = $this->client->transfer($this->getZip());
     $body = (string) $req->getBody();
     if (empty($body)) {
       throw new \Exception('Empty body from finn.');

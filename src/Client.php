@@ -8,6 +8,20 @@ use function GuzzleHttp\Psr7\stream_for;
 
 class Client implements ClientInterface {
 
+  /**
+   * @return bool
+   */
+  public function isZip() {
+    return $this->isZip;
+  }
+
+  /**
+   * @param bool $isZip
+   */
+  public function setIsZip($isZip) {
+    $this->isZip = $isZip;
+  }
+
   const PROD_URL = 'https://www.finn.no/finn/import/fileimport';
 
   protected $url = 'https://import.finn.no/finn/import/fileimport';
@@ -69,13 +83,13 @@ class Client implements ClientInterface {
    *
    * @return mixed|\Psr\Http\Message\ResponseInterface
    */
-  public function transfer($body) {
+  public function transfer($body, $type = 'xml') {
     $post_body = stream_for($body);
     $multipart = new MultipartStream([
       [
         'name' => 'fil',
         'contents' => $post_body,
-        'filename' => 'file.xml',
+        'filename' => "file.$type"
       ]
     ]);
     $this->request = new Request('POST', $this->url, [], $multipart);
@@ -84,6 +98,13 @@ class Client implements ClientInterface {
     }
     $res = $this->client->send($this->request);
     return $res;
+  }
+
+  /**
+   * @param string $requestBody
+   */
+  public function setRequestBody($requestBody) {
+    $this->requestBody = $requestBody;
   }
 
   /**

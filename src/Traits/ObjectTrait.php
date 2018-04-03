@@ -4,6 +4,10 @@ namespace eiriksm\FinnTransfer\Traits;
 
 trait ObjectTrait
 {
+
+  /**
+   * @var \DOMElement
+   */
   protected $objectBody;
 
   /**
@@ -21,5 +25,6 @@ trait ObjectTrait
   public function createObjectHead()
   {
     $this->objectHeadBody = $this->dom->createElement('OBJECT_HEAD');
+    $this->objectBody->appendChild($this->objectHeadBody);
   }
 }

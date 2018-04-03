@@ -171,9 +171,4 @@ abstract class AdType extends XmlBase implements AdTypeInterface
     $this->objectBody->appendChild($this->objectHeadBody);
   }
 
-  public function getXml() {
-    // @todo: Maybe throw an exception if not valid?
-    $valid = @$this->dom->validate();
-    return $this->dom->saveXML();
-  }
 }

@@ -5,11 +5,34 @@ namespace eiriksm\FinnTransfer;
 class XmlBase
 {
 
+  /**
+   * @var string
+   */
   protected $provider;
+
+  /**
+   * @var string
+   */
   protected $partnerId;
+
+  /**
+   * @var string
+   */
   protected $documentType;
+
+  /**
+   * @var string
+   */
   protected $dtd;
+
+  /**
+   * @var \DOMDocument
+   */
   protected $dom;
+
+  /**
+   * @var \DOMElement
+   */
   protected $documentBody;
 
   public function __construct($partner_id, $provider) {
@@ -25,4 +48,11 @@ class XmlBase
     $this->documentBody = $this->dom->createElement($this->documentType);
     $this->dom->appendChild($this->documentBody);
   }
+
+  public function getXml() {
+    // @todo: Maybe throw an exception if not valid?
+    $valid = @$this->dom->validate();
+    return $this->dom->saveXML();
+  }
+
 }
