@@ -4,7 +4,6 @@ namespace eiriksm\FinnTransfer;
 
 interface TransferrableInterface
 {
-
   /**
    * @return \eiriksm\FinnTransfer\Client
    */

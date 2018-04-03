@@ -20,6 +20,13 @@ class FinnMmo implements TransferrableInterface
     $this->client = $client;
   }
 
+  /**
+   * @return \eiriksm\FinnTransfer\Client
+   */
+  public function getClient() {
+    return $this->client;
+  }
+
   public function transfer(\GuzzleHttp\Client $client) {
     // First get the finn client.
     $this->client = new Client();

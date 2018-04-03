@@ -7,6 +7,8 @@ class XmlBase
 
   protected $provider;
   protected $partnerId;
+  protected $documentType;
+  protected $dtd;
   protected $dom;
   protected $documentBody;
 
@@ -14,6 +16,9 @@ class XmlBase
     $this->provider = $provider;
     $this->partnerId = $partner_id;
     $imp = new \DOMImplementation();
+    if (!isset($this->documentType) || !isset($this->dtd)) {
+      throw new \InvalidArgumentException('Class ' . get_class($this) . ' must provide a documentType and dtd property');
+    }
     $dtd = $imp->createDocumentType($this->documentType, '', $this->dtd);
     $this->dom = $imp->createDocument('', '', $dtd);
     $this->dom->encoding = 'UTF-8';

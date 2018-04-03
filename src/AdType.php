@@ -4,8 +4,10 @@ namespace eiriksm\FinnTransfer;
 
 use eiriksm\FinnTransfer\Traits\ContactTrait;
 use eiriksm\FinnTransfer\Traits\EngineTrait;
+use eiriksm\FinnTransfer\Traits\HeaderTrait;
 use eiriksm\FinnTransfer\Traits\MoreInfoTrait;
 use eiriksm\FinnTransfer\Traits\MotorPriceTrait;
+use eiriksm\FinnTransfer\Traits\ObjectTrait;
 
 abstract class AdType extends XmlBase implements AdTypeInterface
 {
@@ -13,20 +15,12 @@ abstract class AdType extends XmlBase implements AdTypeInterface
   use EngineTrait;
   use MoreInfoTrait;
   use ContactTrait;
+  use HeaderTrait;
+  use ObjectTrait {
+    createObjectHead as protected createObjectHeadTrait;
+  }
 
   protected $adBodyTag;
-
-  protected $dtd;
-
-  protected $dom;
-
-  protected $documentType;
-
-  protected $documentBody;
-
-  protected $objectBody;
-
-  protected $objectHeadBody;
 
   protected $objectHeadOrderNo;
 
@@ -149,16 +143,9 @@ abstract class AdType extends XmlBase implements AdTypeInterface
     $this->customTags[$name]->nodeValue = $value;
   }
 
-  public function createObject()
-  {
-    $this->objectBody = $this->dom->createElement('OBJECT');
-    $this->documentBody->appendChild($this->objectBody);
-    $this->createObjectHead();
-  }
-
   public function createObjectHead()
   {
-    $this->objectHeadBody = $this->dom->createElement('OBJECT_HEAD');
+    $this->createObjectHeadTrait();
     $mappings = [
       'ORDERNO' => 'objectHeadOrderNo',
       'USER_REFERENCE' => 'objectHeadUserReference',
@@ -182,17 +169,6 @@ abstract class AdType extends XmlBase implements AdTypeInterface
     $this->objectHeadLocationCountryCode = $this->dom->createElement('COUNTRYCODE');
     $this->objectHeadLocation->appendChild($this->objectHeadLocationCountryCode);
     $this->objectBody->appendChild($this->objectHeadBody);
-  }
-
-  public function createHeader() {
-    $head = $this->dom->createElement('HEAD');
-    $partner = $this->dom->createElement('PARTNER');
-    $partner->nodeValue = $this->partnerId;
-    $provider = $this->dom->createElement('PROVIDER');
-    $provider->nodeValue = $this->provider;
-    $head->appendChild($partner);
-    $head->appendChild($provider);
-    $this->documentBody->appendChild($head);
   }
 
   public function getXml() {
