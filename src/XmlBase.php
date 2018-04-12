@@ -35,10 +35,19 @@ class XmlBase
    */
   protected $documentBody;
 
+  /**
+   * @var array
+   */
+  private $validationErrors = [];
+
   public function __construct($partner_id, $provider) {
     $this->provider = $provider;
     $this->partnerId = $partner_id;
     $imp = new \DOMImplementation();
+    if (!isset($this->documentType) && isset($this->adBodyTag)) {
+      // Create it based on the body tag.
+      $this->documentType = 'IAD.IF.' . $this->adBodyTag;
+    }
     if (!isset($this->documentType) || !isset($this->dtd)) {
       throw new \InvalidArgumentException('Class ' . get_class($this) . ' must provide a documentType and dtd property');
     }
