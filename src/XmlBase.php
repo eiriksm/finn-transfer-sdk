@@ -59,9 +59,20 @@ class XmlBase
   }
 
   public function getXml() {
-    // @todo: Maybe throw an exception if not valid?
-    $valid = @$this->dom->validate();
+    // Hack to get the errors for ourself.
+    $eh = set_error_handler(array($this, 'onValidateError'));
+    $valid = $this->dom->validate();
+    if ($eh) {
+      set_error_handler($eh);
+    }
+    if (false === $valid) {
+      throw new \Exception('The XML was not valid according to the DTD: ' . implode("\n", $this->validationErrors));
+    }
     return $this->dom->saveXML();
+  }
+
+  public function onValidateError($no, $string, $file, $line, $context) {
+    $this->validationErrors[] = $string;
   }
 
 }
