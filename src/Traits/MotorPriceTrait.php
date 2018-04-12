@@ -4,6 +4,10 @@ namespace eiriksm\FinnTransfer\Traits;
 
 trait MotorPriceTrait
 {
+
+  /**
+   * @var \DOMElement
+   */
   protected $priceBody;
 
   protected $priceNumberBody;
