@@ -10,7 +10,7 @@ class AgriXml extends AdType
 {
   use ModelPropertyTrait;
 
-  protected $dtd = 'http://www.iad.no/dtd/IADIF-car-agri11.dtd';
+  protected $dtd = 'http://www.iad.no/dtd/IADIF-car-agri12.dtd';
 
   protected $adBodyTag = 'AGRI';
 
@@ -20,7 +20,13 @@ class AgriXml extends AdType
 
   public function setSegment($segment)
   {
-    $this->AGRI_SEGMENT = $segment;
+    $segment_el = $this->dom->createElement('AGRI_SEGMENT');
+    $segment_group = $this->dom->createElement('GROUP');
+    $segment_group->nodeValue = $segment;
+    $segment_type = $this->dom->createElement('TYPE');
+    $segment_el->appendChild($segment_group);
+    $segment_el->appendChild($segment_type);
+    $this->adBody->appendChild($segment_el);
     $this->createModelProperty('AGRI_MODEL');
     $this->adBody->appendChild($this->modelOuterBody);
   }
