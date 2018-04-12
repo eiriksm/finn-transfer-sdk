@@ -37,7 +37,9 @@ class FinnTransfer implements TransferrableInterface {
         throw new \Exception('Empty body from finn.');
       }
       // Load as xml.
-      $xml = simplexml_load_string($body);
+      if (!$xml = @simplexml_load_string($body)) {
+        throw new \Exception('The Finn body could not be transformed into XML.');
+      }
       return $xml;
   }
 
