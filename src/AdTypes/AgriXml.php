@@ -14,32 +14,55 @@ class AgriXml extends AdType
 
   protected $adBodyTag = 'AGRI';
 
-  public function __construct($partner_id, $provider) {
+  /**
+   * @var \DOMElement
+   */
+  private $segmentGroup;
+
+  public function __construct($partner_id, $provider)
+  {
     parent::__construct($partner_id, $provider);
+    $this->setSegment('');
+    $this->createModelProperty('AGRI_MODEL');
+    $this->adBody->appendChild($this->modelOuterBody);
+    $this->YEAR_MODEL = '';
+    $this->createMotorPriceElements();
+    $this->createEngineElements();
+    // Except this one does not use the "fuel" property.
+    $this->engineBody->removeChild($this->engineFuelBody);
+    $this->WEIGHT = '';
+    $this->SIZE_OF_BOOT = '';
+    $this->HOURS_USED = '';
+    $this->MAX_SPEED = '';
+    $this->CAB = '';
+    $this->CHASSIS_VARIANT = '';
+    $this->REACH = '';
+    $this->LIFT_CAPACITY = '';
+    $this->ADDITIONAL_HYDRAULICS = '';
+    $this->PERFORMANCE_AUXILLIARY_HYDRAULICS = '';
+    $this->TRANSMISSION_SPECIFICATION = '';
+    $this->CE_MARKED = '';
+    $this->CHASSI = '';
+    $this->STATEMENT_OF_COMPLIANCE = '';
+    $this->SERVICE_CONTRACT = '';
+    $this->WORKLOAD = '';
+    $this->CHASSIS_NO = '';
+    $this->DESCRIPTION = '';
+    $this->createMoreInfoElements();
+    $this->initializeContact();
   }
 
   public function setSegment($segment)
   {
-    $segment_el = $this->dom->createElement('AGRI_SEGMENT');
-    $segment_group = $this->dom->createElement('GROUP');
-    $segment_group->nodeValue = $segment;
-    $segment_type = $this->dom->createElement('TYPE');
-    $segment_el->appendChild($segment_group);
-    $segment_el->appendChild($segment_type);
-    $this->adBody->appendChild($segment_el);
-    $this->createModelProperty('AGRI_MODEL');
-    $this->adBody->appendChild($this->modelOuterBody);
-  }
-
-  /**
-   * Magic method to set all properties we want directly on ad body.
-   */
-  public function &__set($name, $value) {
-    if ($name == 'DESCRIPTION') {
-      // Append an empty CE_MARKED element. No idea what that means.
-      parent::__set('CE_MARKED', '');
+    if (!isset($this->customTags['AGRI_SEGMENT'])) {
+      $this->AGRI_SEGMENT = '';
+      $this->segmentGroup = $this->dom->createElement('GROUP');
+      $segment_type = $this->dom->createElement('TYPE');
+      $segment_el = $this->customTags['AGRI_SEGMENT'];
+      $segment_el->appendChild($this->segmentGroup);
+      $segment_el->appendChild($segment_type);
     }
-    parent::__set($name, $value);
+    $this->segmentGroup->nodeValue = $segment;
   }
 
 }

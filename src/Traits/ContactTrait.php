@@ -64,7 +64,7 @@ trait ContactTrait
     $this->contactURLBody->nodeValue = $url;
   }
 
-  private function initializeContact()
+  protected function initializeContact()
   {
     if (!isset($this->contactBody)) {
       $this->contactBody = $this->dom->createElement('CONTACT');
