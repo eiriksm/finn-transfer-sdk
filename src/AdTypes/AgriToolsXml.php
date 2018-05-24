@@ -28,6 +28,12 @@ class AgriToolsXml extends AdType
     $this->TOOLS_CATEGORY = $segment;
     $this->createModelProperty('AGRI_TOOL_MODEL');
     $this->adBody->appendChild($this->modelOuterBody);
+    $this->YEAR_MODEL = '';
+    $this->createMotorPriceElements();
+    $this->WEIGHT = '';
+    $this->DESCRIPTION = '';
+    $this->createMoreInfoElements();
+    $this->initializeContact();
   }
 
   public function setMotorPrice($number, $currency = 'NOK')
