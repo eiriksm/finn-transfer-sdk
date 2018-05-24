@@ -20,6 +20,15 @@ class ThreshingMachineXml extends AdType
     parent::__construct($partner_id, $provider);
     $this->createModelProperty('AGRI_THRESHING_MODEL');
     $this->adBody->appendChild($this->modelOuterBody);
+    $this->YEAR_MODEL = '';
+    $this->HOURS_USED = '';
+    $this->createMotorPriceElements();
+    $this->createEngineElements();
+    $this->WEIGHT = '';
+    $this->TRESHING_MACHINE_EQUIPMENT = '';
+    $this->DESCRIPTION = '';
+    $this->createMoreInfoElements();
+    $this->initializeContact();
   }
 
   public function setSegment($segment)
