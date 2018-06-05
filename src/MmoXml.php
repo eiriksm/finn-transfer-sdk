@@ -68,4 +68,14 @@ class MmoXml extends XmlBase
       }
       return $contents;
     }
+
+    public function asZipFile()
+    {
+      // Add the xml into the zip as well.
+      $this->zip->addFromString('mmo.xml', $this->getXml());
+      if (!$this->zip->close()) {
+        throw new \Exception('Could not close zip file');
+      }
+      return $this->filename;
+    }
 }

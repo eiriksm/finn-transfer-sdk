@@ -66,7 +66,10 @@ class FinnMmo implements TransferrableInterface
     // First get the finn client.
     $this->client->setRequestBody($this->getXml());
     $this->client->setClient($client);
-    $req = $this->client->transfer($this->getZip());
+    if (!$file = file_get_contents($this->zip)) {
+      throw new \Exception('Could not open zip file');
+    }
+    $req = $this->client->transfer($file);
     $body = (string) $req->getBody();
     if (empty($body)) {
       throw new \Exception('Empty body from finn.');
