@@ -122,6 +122,7 @@ abstract class AdType extends XmlBase implements AdTypeInterface
    */
   public function setHeading($heading) {
     $this->heading = $heading;
+    $this->objectHeadHeading->nodeValue = $heading;
   }
 
   public function __construct($partner_id, $provider) {
