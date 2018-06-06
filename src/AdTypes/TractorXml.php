@@ -51,7 +51,7 @@ class TractorXml extends AdType
 
   public function setSegment($segment)
   {
-    // Empty on purpse. There is no segment.
+    // Empty on purpose. There is no segment.
   }
 
   public function setMotorPrice($number, $currency = 'NOK')
