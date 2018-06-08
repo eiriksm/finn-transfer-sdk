@@ -154,6 +154,11 @@ abstract class AdType extends XmlBase implements AdTypeInterface
     }
   }
 
+  public function hasCustomTag($name)
+  {
+    return isset($this->customTags[$name]);
+  }
+
   public function createObjectHead()
   {
     $this->createObjectHeadTrait();
