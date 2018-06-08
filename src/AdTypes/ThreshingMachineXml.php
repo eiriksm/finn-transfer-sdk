@@ -31,6 +31,14 @@ class ThreshingMachineXml extends AdType
     $this->initializeContact();
   }
 
+  public function &__set($name, $value) {
+    if ($name == 'MILEAGE') {
+      // Not allowed for this ad type.
+      return;
+    }
+    parent::__set($name, $value);
+  }
+
   public function setSegment($segment)
   {
     // Empty on purpse. There is no segment.

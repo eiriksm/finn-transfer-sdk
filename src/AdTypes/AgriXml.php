@@ -52,6 +52,15 @@ class AgriXml extends AdType
     $this->initializeContact();
   }
 
+
+  public function &__set($name, $value) {
+    if ($name == 'MILEAGE') {
+      // Not allowed for this ad type.
+      return;
+    }
+    parent::__set($name, $value);
+  }
+
   public function setSegment($segment)
   {
     if (!isset($this->customTags['AGRI_SEGMENT'])) {
