@@ -44,6 +44,13 @@ class FinnTransfer implements TransferrableInterface {
   }
 
   /**
+   * @return string
+   */
+  public function getAd() {
+    return $this->ad;
+  }
+
+  /**
    * @param mixed $ad
    */
   public function setAd($ad) {
