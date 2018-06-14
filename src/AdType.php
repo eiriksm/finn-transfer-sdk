@@ -136,7 +136,7 @@ abstract class AdType extends XmlBase implements AdTypeInterface
   /**
    * Magic method to set all properties we want directly on ad body.
    */
-  public function &__set($name, $value) {
+  public function __set($name, $value) {
     if ($name == 'DESCRIPTION') {
       // This is CDATA for sure.
       $value = $this->dom->createCDATASection($value);
