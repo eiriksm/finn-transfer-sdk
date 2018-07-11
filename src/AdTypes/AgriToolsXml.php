@@ -11,6 +11,7 @@ class AgriToolsXml extends AdType
   use ModelPropertyTrait;
   use MotorPriceTrait {
     setMotorPrice as protected setMotorPriceTrait;
+    createMotorPriceElements as protected createMotorPriceElementsTrait;
   }
 
   protected $dtd = 'http://www.iad.no/dtd/IADIF-agri_tool-23.dtd';
@@ -21,11 +22,7 @@ class AgriToolsXml extends AdType
 
   public function __construct($partner_id, $provider) {
     parent::__construct($partner_id, $provider);
-  }
-
-  public function setSegment($segment)
-  {
-    $this->TOOLS_CATEGORY = $segment;
+    $this->setSegment('');
     $this->createModelProperty('AGRI_TOOL_MODEL');
     $this->adBody->appendChild($this->modelOuterBody);
     $this->YEAR_MODEL = '';
@@ -36,6 +33,11 @@ class AgriToolsXml extends AdType
     $this->initializeContact();
   }
 
+  public function setSegment($segment)
+  {
+    $this->TOOLS_CATEGORY = $segment;
+  }
+
   public function &__set($name, $value) {
     if ($name == 'MILEAGE') {
       // Not allowed for this ad type.
@@ -44,9 +46,9 @@ class AgriToolsXml extends AdType
     parent::__set($name, $value);
   }
 
-  public function setMotorPrice($number, $currency = 'NOK')
+  public function createMotorPriceElements()
   {
-    $this->setMotorPriceTrait($number, $currency);
+    $this->createMotorPriceElementsTrait();
     $this->priceBody->setAttribute('REGISTRATIONTAX_INCLUDED', 'yes');
   }
 
