@@ -4,5 +4,5 @@ namespace eiriksm\FinnTransfer;
 
 interface ClientInterface
 {
-  public function transfer($body);
+    public function transfer($body);
 }

@@ -8,23 +8,23 @@ trait ObjectTrait
   /**
    * @var \DOMElement
    */
-  protected $objectBody;
+    protected $objectBody;
 
   /**
    * @var \DOMElement
    */
-  protected $objectHeadBody;
+    protected $objectHeadBody;
 
-  public function createObject()
-  {
-    $this->objectBody = $this->dom->createElement('OBJECT');
-    $this->documentBody->appendChild($this->objectBody);
-    $this->createObjectHead();
-  }
+    public function createObject()
+    {
+        $this->objectBody = $this->dom->createElement('OBJECT');
+        $this->documentBody->appendChild($this->objectBody);
+        $this->createObjectHead();
+    }
 
-  public function createObjectHead()
-  {
-    $this->objectHeadBody = $this->dom->createElement('OBJECT_HEAD');
-    $this->objectBody->appendChild($this->objectHeadBody);
-  }
+    public function createObjectHead()
+    {
+        $this->objectHeadBody = $this->dom->createElement('OBJECT_HEAD');
+        $this->objectBody->appendChild($this->objectHeadBody);
+    }
 }

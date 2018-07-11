@@ -7,12 +7,12 @@ interface TransferrableInterface
   /**
    * @return \eiriksm\FinnTransfer\Client
    */
-  public function getClient();
+    public function getClient();
 
   /**
    * @param \GuzzleHttp\Client $client
    *
    * @return \SimpleXMLElement
    */
-  public function transfer(\GuzzleHttp\Client $client);
+    public function transfer(\GuzzleHttp\Client $client);
 }
