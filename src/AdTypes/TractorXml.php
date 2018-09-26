@@ -42,7 +42,7 @@ class TractorXml extends AdType
         $this->initializeContact();
     }
 
-    public function &__set($name, $value)
+    public function __set($name, $value)
     {
         if ($name == 'MILEAGE') {
           // Not allowed for this ad type.
