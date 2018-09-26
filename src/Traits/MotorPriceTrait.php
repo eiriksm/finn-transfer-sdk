@@ -5,14 +5,16 @@ namespace eiriksm\FinnTransfer\Traits;
 trait MotorPriceTrait
 {
 
-  /**
-   * @var \DOMElement
-   */
+    /**
+     * @var \DOMElement
+     */
     protected $priceBody;
 
     protected $priceNumberBody;
 
     protected $priceCurrencyBody;
+
+    protected $includesVat = false;
 
     public function setMotorPrice($number, $currency = 'NOK')
     {
@@ -23,7 +25,17 @@ trait MotorPriceTrait
         $this->priceCurrencyBody->nodeValue = $currency;
     }
 
-    protected function createMotorPriceElements()
+    public function setIncludingMva($includes)
+    {
+        if (!$this->priceBody->hasAttribute('VAT_INCLUDED')) {
+            return;
+        }
+        $this->includesVat = (bool) $includes;
+        $includes ? $this->priceBody->setAttribute('VAT_INCLUDED', 'yes') : $this->priceBody->setAttribute('VAT_INCLUDED', 'no');
+        return $this;
+    }
+
+    protected function createMotorPriceElements($vat_attribute = false)
     {
         if (isset($this->customTags['MOTOR_PRICE'])) {
             $this->priceBody = $this->customTags['MOTOR_PRICE'];
@@ -35,5 +47,9 @@ trait MotorPriceTrait
         $this->priceBody->appendChild($this->priceNumberBody);
         $this->priceCurrencyBody = $this->dom->createElement('CURRENCY');
         $this->priceBody->appendChild($this->priceCurrencyBody);
+        if ($vat_attribute) {
+          $this->includesVat = true;
+          $this->priceBody->setAttribute('VAT_INCLUDED', 'yes');
+        }
     }
 }
