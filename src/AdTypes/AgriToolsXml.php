@@ -50,7 +50,7 @@ class AgriToolsXml extends AdType
 
     public function createMotorPriceElements()
     {
-        $this->createMotorPriceElementsTrait();
+        $this->createMotorPriceElementsTrait(true);
         $this->priceBody->setAttribute('REGISTRATIONTAX_INCLUDED', 'yes');
     }
 }

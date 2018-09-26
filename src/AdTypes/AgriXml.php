@@ -14,9 +14,9 @@ class AgriXml extends AdType
 
     protected $adBodyTag = 'AGRI';
 
-  /**
-   * @var \DOMElement
-   */
+    /**
+     * @var \DOMElement
+     */
     private $segmentGroup;
 
     public function __construct($partner_id, $provider)
@@ -26,9 +26,9 @@ class AgriXml extends AdType
         $this->createModelProperty('AGRI_MODEL');
         $this->adBody->appendChild($this->modelOuterBody);
         $this->YEAR_MODEL = '';
-        $this->createMotorPriceElements();
+        $this->createMotorPriceElements(true);
         $this->createEngineElements();
-      // Except this one does not use the "fuel" property.
+        // Except this one does not use the "fuel" property.
         $this->engineBody->removeChild($this->engineFuelBody);
         $this->WEIGHT = '';
         $this->SIZE_OF_BOOT = '';
@@ -56,7 +56,7 @@ class AgriXml extends AdType
     public function __set($name, $value)
     {
         if ($name == 'MILEAGE') {
-          // Not allowed for this ad type.
+            // Not allowed for this ad type.
             return;
         }
         parent::__set($name, $value);

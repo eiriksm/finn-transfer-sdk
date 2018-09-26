@@ -29,7 +29,7 @@ class TractorXml extends AdType
         $this->createMotorPriceElements();
         $this->createEngineElements();
         $this->WEIGHT = '';
-      // Add the tractor tyre property.
+        // Add the tractor tyre property.
         $ttype_el = $this->dom->createElement('TRACTOR_TYRE');
         $front_tyre_el = $this->dom->createElement('FRONT_TYRES');
         $rear_tyre_el = $this->dom->createElement('REAR_TYRES');
@@ -45,7 +45,7 @@ class TractorXml extends AdType
     public function __set($name, $value)
     {
         if ($name == 'MILEAGE') {
-          // Not allowed for this ad type.
+            // Not allowed for this ad type.
             return;
         }
         parent::__set($name, $value);
