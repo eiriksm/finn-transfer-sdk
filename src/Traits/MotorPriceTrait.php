@@ -48,8 +48,8 @@ trait MotorPriceTrait
         $this->priceCurrencyBody = $this->dom->createElement('CURRENCY');
         $this->priceBody->appendChild($this->priceCurrencyBody);
         if ($vat_attribute) {
-          $this->includesVat = true;
-          $this->priceBody->setAttribute('VAT_INCLUDED', 'yes');
+            $this->includesVat = true;
+            $this->priceBody->setAttribute('VAT_INCLUDED', 'yes');
         }
     }
 }
