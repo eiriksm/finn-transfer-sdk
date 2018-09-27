@@ -39,7 +39,7 @@ class AgriToolsXml extends AdType
         $this->TOOLS_CATEGORY = $segment;
     }
 
-    public function &__set($name, $value)
+    public function __set($name, $value)
     {
         if ($name == 'MILEAGE') {
           // Not allowed for this ad type.
@@ -48,7 +48,7 @@ class AgriToolsXml extends AdType
         parent::__set($name, $value);
     }
 
-    public function createMotorPriceElements()
+    public function createMotorPriceElements($vat_attribute = false)
     {
         $this->createMotorPriceElementsTrait(true);
         $this->priceBody->setAttribute('REGISTRATIONTAX_INCLUDED', 'yes');
