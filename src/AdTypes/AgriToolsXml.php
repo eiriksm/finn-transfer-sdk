@@ -42,7 +42,7 @@ class AgriToolsXml extends AdType
     public function __set($name, $value)
     {
         if ($name == 'MILEAGE') {
-          // Not allowed for this ad type.
+            // Not allowed for this ad type.
             return;
         }
         parent::__set($name, $value);

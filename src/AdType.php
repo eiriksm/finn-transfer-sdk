@@ -28,9 +28,9 @@ abstract class AdType extends XmlBase implements AdTypeInterface
 
     protected $objectHeadProviderReference;
 
-  /**
-   * @var \DOMElement
-   */
+    /**
+     * @var \DOMElement
+     */
     protected $objectHeadOverWriteMmo;
 
     protected $objectHeadVersionNo;
