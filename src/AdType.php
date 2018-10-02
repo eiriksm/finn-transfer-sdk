@@ -69,6 +69,17 @@ abstract class AdType extends XmlBase implements AdTypeInterface
 
     protected $adBody;
 
+    /**
+     * {@inheritdoc}
+     */
+    public function setEngineEffect($effect)
+    {
+        if (empty($this->engineEffectBody)) {
+            return;
+        }
+        $this->engineEffectBody->nodeValue = $effect;
+    }
+
   /**
    * @param mixed $orderNo
    */
