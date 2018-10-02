@@ -1,7 +1,11 @@
 # finn-transfer-sdk
 [![Build Status](https://travis-ci.org/eiriksm/finn-transfer-sdk.svg?branch=master)](https://travis-ci.org/eiriksm/finn-transfer-sdk)
 
-SDK for transferring ads to finn
+SDK for transferring ads to finn.no
+
+You need an agreement to use this API, and the [complete documentation can be found here](https://hjelpesenter.finn.no/hc/no/articles/303554-How-to-get-started-Import-Transfer-choices).
+
+This library implements the REST API part described in that documentation.
 
 ## Installation
 
