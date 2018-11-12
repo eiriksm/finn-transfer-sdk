@@ -26,7 +26,7 @@ class TractorXml extends AdType
         $this->adBody->appendChild($this->modelOuterBody);
         $this->YEAR_MODEL = '';
         $this->HOURS_USED = '';
-        $this->createMotorPriceElements();
+        $this->createMotorPriceElements(true);
         $this->createEngineElements();
         $this->WEIGHT = '';
         // Add the tractor tyre property.
