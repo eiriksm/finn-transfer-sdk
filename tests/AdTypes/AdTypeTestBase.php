@@ -17,7 +17,9 @@ class AdTypeTestBase extends TestCase
     {
         $partner_id = 'test';
         $provider = 'test';
+        /** @var AdType $class */
         $class = new $this->className($partner_id, $provider);
         $this->assertTrue($class instanceof AdType);
+        $this->assertNotFalse($class->getXml());
     }
 }
