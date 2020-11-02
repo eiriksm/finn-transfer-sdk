@@ -48,9 +48,11 @@ class BoatXml extends AdType
         $this->VIDEO_URL = '';
     }
 
-    public function setMotorPrice($number, $currency = 'NOK') {
+    public function setMotorPrice($number, $currency = 'NOK')
+    {
     }
 
-    public function setIncludingMva($includes) {
+    public function setIncludingMva($includes)
+    {
     }
 }
