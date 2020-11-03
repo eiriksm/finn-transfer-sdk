@@ -14,7 +14,7 @@ class CarXml extends AdType
         createMotorPriceElements as protected createMotorPriceElementsTrait;
     }
 
-    protected $dtd = 'http://www.iad.no/dtd/IADIF-car20.dtd';
+    protected $dtd = 'http://www.finn.no/dtd/IADIF-car33.dtd';
 
     protected $documentType = 'IAD.IF.CAR';
 
@@ -47,6 +47,7 @@ class CarXml extends AdType
         $this->NO_OF_OWNERS = '';
         $this->REGNO = '';
         $this->initializeContact();
+        $this->contactBody->removeAttribute('PHONESALESRESERVATION');
         $this->CAR_LOCATION = '';
         $this->CAR_SALESFORM = '';
     }
@@ -70,5 +71,19 @@ class CarXml extends AdType
             $this->priceBody->setAttribute('VAT_INCLUDED', 'yes');
         }
         $this->priceBody->setAttribute('REGISTRATIONTAX_INCLUDED', 'yes');
+    }
+
+    public function setAdType($type)
+    {
+        $this->CAR_SALESFORM = $type;
+    }
+
+    public function setRegistrationNumber($number)
+    {
+        $this->REGNO = $number;
+    }
+
+    public function setPhoneSalesReservation($reservation = TRUE)
+    {
     }
 }

@@ -69,6 +69,11 @@ abstract class AdType extends XmlBase implements AdTypeInterface
 
     protected $adBody;
 
+  /**
+   * @var \DOMElement[]
+   */
+    protected $customTags;
+
     /**
      * {@inheritdoc}
      */
@@ -157,16 +162,16 @@ abstract class AdType extends XmlBase implements AdTypeInterface
    */
     public function __set($name, $value)
     {
-        if ($name == 'DESCRIPTION') {
-          // This is CDATA for sure.
+        if ($name === 'DESCRIPTION') {
+           // This is CDATA for sure.
             $value = $this->dom->createCDATASection($value);
         }
         if (!isset($this->customTags[$name])) {
             $this->customTags[$name] = $this->dom->createElement($name);
             $this->adBody->appendChild($this->customTags[$name]);
         }
-        if ($name == 'DESCRIPTION') {
-          // This is CDATA for sure.
+        if ($name === 'DESCRIPTION') {
+           // This is CDATA for sure.
             $this->customTags[$name]->appendChild($value);
         } else {
             $this->customTags[$name]->nodeValue = $value;
