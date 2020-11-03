@@ -58,7 +58,7 @@ class McXml extends AdType
     {
     }
 
-  public function setSegment($value)
+    public function setSegment($value)
     {
         $this->MC_MAIN_CATEGORY = $value;
     }
@@ -79,7 +79,7 @@ class McXml extends AdType
         $this->REGNO = $number;
     }
 
-    public function setPhoneSalesReservation($reservation = TRUE)
+    public function setPhoneSalesReservation($reservation = true)
     {
     }
 }

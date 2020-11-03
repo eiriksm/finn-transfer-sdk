@@ -83,7 +83,7 @@ class CarXml extends AdType
         $this->REGNO = $number;
     }
 
-    public function setPhoneSalesReservation($reservation = TRUE)
+    public function setPhoneSalesReservation($reservation = true)
     {
     }
 }
