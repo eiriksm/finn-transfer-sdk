@@ -2,10 +2,10 @@
 
 namespace eiriksm\FinnTransfer\Tests\AdTypes;
 
-use eiriksm\FinnTransfer\AdTypes\McXml;
+use eiriksm\FinnTransfer\AdTypes\TorgetXml;
 
-class McXmlTest extends AdTypeTestBase
+class TorgetXmlTest extends AdTypeTestBase
 {
 
-    protected $className = McXml::class;
+    protected $className = TorgetXml::class;
 }

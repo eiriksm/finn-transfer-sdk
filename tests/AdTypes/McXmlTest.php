@@ -2,10 +2,10 @@
 
 namespace eiriksm\FinnTransfer\Tests\AdTypes;
 
-use eiriksm\FinnTransfer\AdTypes\AgriToolsXml;
+use eiriksm\FinnTransfer\AdTypes\McXml;
 
-class AgriToolsXmlTest extends AdTypeTestBase
+class McXmlTest extends AdTypeTestBase
 {
 
-    protected $className = AgriToolsXml::class;
+    protected $className = McXml::class;
 }
