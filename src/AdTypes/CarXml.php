@@ -8,7 +8,9 @@ use eiriksm\FinnTransfer\Traits\MotorPriceTrait;
 
 class CarXml extends AdType
 {
-    use ModelPropertyTrait;
+    use ModelPropertyTrait {
+        createModelProperty as public createModelPropertyTrait;
+    }
     use MotorPriceTrait {
         setMotorPrice as protected setMotorPriceTrait;
         createMotorPriceElements as protected createMotorPriceElementsTrait;
@@ -19,6 +21,11 @@ class CarXml extends AdType
     protected $documentType = 'IAD.IF.CAR';
 
     protected $adBodyTag = 'CAR';
+
+    /**
+     * @var \DOMElement
+     */
+    protected $modelSpecBody;
 
     public function __construct($partner_id, $provider)
     {
@@ -50,6 +57,18 @@ class CarXml extends AdType
         $this->contactBody->removeAttribute('PHONESALESRESERVATION');
         $this->CAR_LOCATION = '';
         $this->CAR_SALESFORM = '';
+    }
+
+    public function createModelProperty($name)
+    {
+        $this->createModelPropertyTrait($name);
+        $this->modelSpecBody = $this->dom->createElement('MODEL_SPECIFICATION');
+        $this->modelOuterBody->appendChild($this->modelSpecBody);
+    }
+
+    public function setModelSpecification($spec)
+    {
+        $this->modelSpecBody->nodeValue = $spec;
     }
 
     public function createMotorPriceElements($vat_attribute = false)
