@@ -9,7 +9,7 @@ use eiriksm\FinnTransfer\Traits\MotorPriceTrait;
 class CarXml extends AdType
 {
     use ModelPropertyTrait {
-      createModelProperty as public createModelPropertyTrait;
+        createModelProperty as public createModelPropertyTrait;
     }
     use MotorPriceTrait {
         setMotorPrice as protected setMotorPriceTrait;
@@ -71,7 +71,7 @@ class CarXml extends AdType
         $this->modelSpecBody->nodeValue = $spec;
     }
 
-  public function createMotorPriceElements($vat_attribute = false)
+    public function createMotorPriceElements($vat_attribute = false)
     {
         if (isset($this->customTags['MOTOR_PRICE'])) {
             $this->priceBody = $this->customTags['MOTOR_PRICE'];
