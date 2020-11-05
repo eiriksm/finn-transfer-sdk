@@ -27,6 +27,8 @@ class CarXml extends AdType
      */
     protected $modelSpecBody;
 
+    protected $equipment = [];
+
     public function __construct($partner_id, $provider)
     {
         parent::__construct($partner_id, $provider);
@@ -41,7 +43,6 @@ class CarXml extends AdType
         $this->EXTERIOR_COLOUR_MAIN = '';
         $this->EXTERIOR_COLOUR = '';
         $this->INTERIOR_COLOUR = '';
-        $this->EQUIPMENT = '';
         $this->NO_OF_DOORS = '';
         $this->NO_OF_SEATS = '';
         $this->createEngineElements();
@@ -57,6 +58,14 @@ class CarXml extends AdType
         $this->contactBody->removeAttribute('PHONESALESRESERVATION');
         $this->CAR_LOCATION = '';
         $this->CAR_SALESFORM = '';
+    }
+
+    public function addEquipment($equipment_value)
+    {
+        $equipment_el = $this->dom->createElement('EQUIPMENT');
+        $equipment_el->nodeValue = $equipment_value;
+        $this->equipment[] = $equipment_el;
+        $this->customTags['NO_OF_DOORS']->parentNode->insertBefore($equipment_el, $this->customTags['NO_OF_DOORS']);
     }
 
     public function createModelProperty($name)
@@ -105,4 +114,5 @@ class CarXml extends AdType
     public function setPhoneSalesReservation($reservation = true)
     {
     }
+
 }

@@ -61,7 +61,7 @@ class XmlBase
 
     public function getXml()
     {
-      // Hack to get the errors for ourself.
+        // Hack to get the errors for ourself.
         $eh = set_error_handler(array($this, 'onValidateError'));
         $valid = $this->dom->validate();
         if ($eh) {

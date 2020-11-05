@@ -58,9 +58,14 @@ class McXml extends AdType
     {
     }
 
-    public function setSegment($value)
+    public function setMainCategory($value)
     {
         $this->MC_MAIN_CATEGORY = $value;
+    }
+
+    public function setMcCategory($value)
+    {
+        $this->MC_CATEGORY = $value;
     }
 
     public function createMotorPriceElements($vat_attribute = false)

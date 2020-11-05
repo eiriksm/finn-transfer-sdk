@@ -44,4 +44,14 @@ trait EngineTrait
         $this->engineBody->appendChild($this->engineFuelBody);
         $this->adBody->appendChild($this->engineBody);
     }
+
+    public function setEngineFuel($fuel)
+    {
+        $this->engineFuelBody->nodeValue = $fuel;
+    }
+
+    public function setEngineVolume($volume)
+    {
+       $this->engineVolumeBody->nodeValue = $volume;
+    }
 }
