@@ -114,5 +114,4 @@ class CarXml extends AdType
     public function setPhoneSalesReservation($reservation = true)
     {
     }
-
 }

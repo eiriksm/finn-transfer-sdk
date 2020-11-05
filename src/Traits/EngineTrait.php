@@ -52,6 +52,6 @@ trait EngineTrait
 
     public function setEngineVolume($volume)
     {
-       $this->engineVolumeBody->nodeValue = $volume;
+        $this->engineVolumeBody->nodeValue = $volume;
     }
 }
