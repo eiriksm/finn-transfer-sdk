@@ -125,7 +125,7 @@ class CarXml extends AdType
         $this->priceNumberBody->nodeValue = $number;
     }
 
-  public function setAdType($type)
+    public function setAdType($type)
     {
         $this->CAR_SALESFORM = $type;
     }
