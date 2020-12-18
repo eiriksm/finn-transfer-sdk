@@ -16,7 +16,7 @@ class CarXml extends AdType
         createMotorPriceElements as protected createMotorPriceElementsTrait;
     }
 
-    protected $dtd = 'http://www.finn.no/dtd/IADIF-car33.dtd';
+    protected $dtd = 'https://www.iad.no/dtd/IADIF-car35.dtd';
 
     protected $documentType = 'IAD.IF.CAR';
 
@@ -33,31 +33,50 @@ class CarXml extends AdType
     {
         parent::__construct($partner_id, $provider);
         $this->createModelProperty('CAR_MODEL');
-        $this->adBody->appendChild($this->modelOuterBody);
+        $this->CAR_SALESFORM = '';
+        $this->REGNO = '';
+        $this->CHASSIS_NO = '';
         $this->YEAR_MODEL = '';
-        $this->REGISTRATION_FIRST = '';
+        $this->adBody->appendChild($this->modelOuterBody);
+        $this->CAR_LOCATION = '';
+        $this->createEngineElements();
+        $this->CO2 = '';
+        $this->BATTERY_CAPACITY = '';
+        $this->DRIVING_RANGE = '';
+        $this->TRANSMISSION = '';
+        $this->TRANSMISSION_SPECIFICATION = '';
+        $this->WHEEL_DRIVE = '';
+        $this->WHEEL_DRIVE_SPECIFICATION = '';
         $this->BODY_TYPE = '';
         $this->REGISTRATION_CLASS = '';
-        $this->MILEAGE = '';
-        $this->createMotorPriceElements();
+        $this->NO_OF_SEATS = '';
+        $this->NO_OF_DOORS = '';
+        $this->SIZE_OF_BOOT = '';
+        $this->WEIGHT = '';
+        $this->MAX_TRAILER_WEIGHT = '';
         $this->EXTERIOR_COLOUR_MAIN = '';
         $this->EXTERIOR_COLOUR = '';
         $this->INTERIOR_COLOUR = '';
-        $this->NO_OF_DOORS = '';
-        $this->NO_OF_SEATS = '';
-        $this->createEngineElements();
-        $this->TRANSMISSION = '';
-        $this->SIZE_OF_BOOT = '';
-        $this->WEIGHT = '';
-        $this->WHEEL_DRIVE = '';
+        $this->MILEAGE = '';
+        $this->REGISTRATION_FIRST = '';
+        $this->NO_OF_OWNERS = '';
+        $this->WARRANTY = '';
+        $this->WARRANTY_DURATION = '';
+        $this->WARRANTY_DISTANCE = '';
+        $this->CAR_CONDITION_DOC = '';
+        $this->RIGHT_TO_EXCHANGE = '';
+        $this->SERVICE_PLAN_FOLLOWED = '';
+        $this->CAR_SERVICE_HISTORY = '';
+        $this->NBF = '';
+        $this->CAR_PREMIUMBRAND = '';
+        $this->CAR_PREMIUMBRAND_LINK = '';
+        $this->VIDEO_URL = '';
         $this->DESCRIPTION = '';
         $this->createMoreInfoElements();
-        $this->NO_OF_OWNERS = '';
-        $this->REGNO = '';
+        $this->createMotorPriceElements();
         $this->initializeContact();
         $this->contactBody->removeAttribute('PHONESALESRESERVATION');
-        $this->CAR_LOCATION = '';
-        $this->CAR_SALESFORM = '';
+        $this->contactBody->removeChild($this->contactFaxBody);
     }
 
     public function addEquipment($equipment_value)
@@ -65,7 +84,7 @@ class CarXml extends AdType
         $equipment_el = $this->dom->createElement('EQUIPMENT');
         $equipment_el->nodeValue = $equipment_value;
         $this->equipment[] = $equipment_el;
-        $this->customTags['NO_OF_DOORS']->parentNode->insertBefore($equipment_el, $this->customTags['NO_OF_DOORS']);
+        $this->customTags['MILEAGE']->parentNode->insertBefore($equipment_el, $this->customTags['MILEAGE']);
     }
 
     public function createModelProperty($name)
@@ -92,13 +111,18 @@ class CarXml extends AdType
         $this->priceBody->appendChild($this->priceNumberBody);
         $reg_el = $this->dom->createElement('REGISTRATION', '0');
         $this->priceBody->appendChild($reg_el);
-        $this->priceCurrencyBody = $this->dom->createElement('CURRENCY');
-        $this->priceBody->appendChild($this->priceCurrencyBody);
         if ($vat_attribute) {
             $this->includesVat = true;
             $this->priceBody->setAttribute('VAT_INCLUDED', 'yes');
         }
-        $this->priceBody->setAttribute('REGISTRATIONTAX_INCLUDED', 'yes');
+    }
+
+    public function setMotorPrice($number, $currency = 'NOK')
+    {
+        if (!isset($this->priceBody)) {
+            $this->createMotorPriceElements();
+        }
+        $this->priceNumberBody->nodeValue = $number;
     }
 
     public function setAdType($type)
