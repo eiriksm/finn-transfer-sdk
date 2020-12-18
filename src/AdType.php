@@ -45,6 +45,12 @@ abstract class AdType extends XmlBase implements AdTypeInterface
 
     protected $objectHeadLocationCountryCode;
 
+    protected $objectHeadLocationAddress2;
+
+    protected $objectHeadLocationAddress3;
+
+    protected $objectHeadLocationAddress4;
+
     protected $objectHeadHeading;
 
     protected $objectHeadSegment;
@@ -64,6 +70,12 @@ abstract class AdType extends XmlBase implements AdTypeInterface
     protected $zipCode;
 
     protected $countryCode;
+
+    protected $address2;
+
+    protected $address3;
+
+    protected $address4;
 
     protected $heading;
 
@@ -130,6 +142,24 @@ abstract class AdType extends XmlBase implements AdTypeInterface
         $this->objectHeadLocationZipcode->nodeValue = $zipCode;
     }
 
+    public function setAddress2($address)
+    {
+        $this->address2 = $address;
+        $this->objectHeadLocationAddress2->nodeValue = $address;
+    }
+
+    public function setAddress3($address)
+    {
+        $this->address3 = $address;
+        $this->objectHeadLocationAddress3->nodeValue = $address;
+    }
+
+    public function setAddress4($address)
+    {
+        $this->address4 = $address;
+        $this->objectHeadLocationAddress4->nodeValue = $address;
+    }
+
   /**
    * @param mixed $countryCode
    */
@@ -187,27 +217,32 @@ abstract class AdType extends XmlBase implements AdTypeInterface
     {
         $this->createObjectHeadTrait();
         $mappings = [
-        'ORDERNO' => 'objectHeadOrderNo',
-        'USER_REFERENCE' => 'objectHeadUserReference',
-        'PROVIDER_REFERENCE' => 'objectHeadProviderReference',
-        'OVERWRITE_MMO' => 'objectHeadOverWriteMmo',
-        'VERSIONNO' => 'objectHeadVersionNo',
-        'FROMDATE' => 'objectHeadFromDate',
-        'TODATE' => 'objectHeadToDate',
-        'OBJECT_LOCATION' => 'objectHeadLocation',
-        'HEADING' => 'objectHeadHeading',
+            'ORDERNO' => 'objectHeadOrderNo',
+            'USER_REFERENCE' => 'objectHeadUserReference',
+            'PROVIDER_REFERENCE' => 'objectHeadProviderReference',
+            'OVERWRITE_MMO' => 'objectHeadOverWriteMmo',
+            'VERSIONNO' => 'objectHeadVersionNo',
+            'FROMDATE' => 'objectHeadFromDate',
+            'TODATE' => 'objectHeadToDate',
+            'OBJECT_LOCATION' => 'objectHeadLocation',
+            'HEADING' => 'objectHeadHeading',
         ];
         foreach ($mappings as $field => $property) {
             $this->{$property} = $this->dom->createElement($field);
             $this->objectHeadBody->appendChild($this->{$property});
         }
-      // Overwrite mmo is empty, but has a property.
+        // Overwrite mmo is empty, but has a property.
         $this->objectHeadOverWriteMmo->setAttribute('MODUS', 'all');
-      // Also, create the children of the location.
+        // Also, create the children of the location.
         $this->objectHeadLocationZipcode = $this->dom->createElement('ZIPCODE');
         $this->objectHeadLocation->appendChild($this->objectHeadLocationZipcode);
         $this->objectHeadLocationCountryCode = $this->dom->createElement('COUNTRYCODE');
         $this->objectHeadLocation->appendChild($this->objectHeadLocationCountryCode);
+        foreach ([2, 3, 4] as $address_item) {
+            $key = 'objectHeadLocationAddress' . $address_item;
+            $this->{$key} = $this->dom->createElement('ADDRESS' . $address_item);
+            $this->objectHeadLocation->appendChild($this->{$key});
+        }
         $this->objectBody->appendChild($this->objectHeadBody);
     }
 }
