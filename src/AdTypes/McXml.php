@@ -79,11 +79,6 @@ class McXml extends AdType
         $this->CAR_SALESFORM = $type;
     }
 
-    public function setRegistrationNumber($number)
-    {
-        $this->REGNO = $number;
-    }
-
     public function setPhoneSalesReservation($reservation = true)
     {
     }
