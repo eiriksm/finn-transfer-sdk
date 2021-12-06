@@ -213,6 +213,11 @@ abstract class AdType extends XmlBase implements AdTypeInterface
         return isset($this->customTags[$name]);
     }
 
+    public function getPriceTagName()
+    {
+        return $this->priceBody->tagName ?? '';
+    }
+
     public function createObjectHead()
     {
         $this->createObjectHeadTrait();
@@ -244,5 +249,10 @@ abstract class AdType extends XmlBase implements AdTypeInterface
             $this->objectHeadLocation->appendChild($this->{$key});
         }
         $this->objectBody->appendChild($this->objectHeadBody);
+    }
+
+    public function setRegistrationNumber($number)
+    {
+        $this->REGNO = $number;
     }
 }

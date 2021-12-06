@@ -6,7 +6,7 @@ use eiriksm\FinnTransfer\AdType;
 use eiriksm\FinnTransfer\Traits\ModelPropertyTrait;
 use eiriksm\FinnTransfer\Traits\MotorPriceTrait;
 
-class CaravanXml extends AdType
+class MobileHomeXml extends AdType
 {
     use ModelPropertyTrait;
     use MotorPriceTrait {
@@ -14,11 +14,11 @@ class CaravanXml extends AdType
         createMotorPriceElements as protected createMotorPriceElementsTrait;
     }
 
-    protected $dtd = 'http://www.finn.no/dtd/IADIF-caravan-27.dtd';
+    protected $dtd = 'https://www.iad.no/dtd/IADIF-mobilehome-11.dtd';
 
-    protected $documentType = 'IAD.IF.CARAVAN';
+    protected $documentType = 'IAD.IF.MOBILE_HOME';
 
-    protected $adBodyTag = 'CARAVAN';
+    protected $adBodyTag = 'MOBILE_HOME';
 
     protected $weightBody;
     protected $weightNet;
@@ -27,44 +27,67 @@ class CaravanXml extends AdType
     public function __construct($partner_id, $provider)
     {
         parent::__construct($partner_id, $provider);
+
         $this->CARAVAN_SALESFORM = '';
-        $this->CARAVAN_SEGMENT = '';
+        $this->MOBILE_HOME_SEGMENT = '';
+        $this->MOBILE_HOME_CHASSIS = '';
+
+        // Model.
         $this->createModelProperty('CARAVAN_MODEL');
         $this->adBody->appendChild($this->modelOuterBody);
-        $this->CARAVAN_LOCATION = '';
+
+        // Other fields.
         $this->YEAR_MODEL = '';
         $this->MILEAGE = '';
         $this->NO_OF_BERTHS = '';
+        $this->BED = '';
         $this->WIDTH_CM = '';
         $this->LENGTH_CM = '';
-        $this->INTERIOR_LENGTH_CM = '';
+
+        // Weight.
         $this->weightBody = $this->dom->createElement('CARAVAN_WEIGHT');
         $this->weightNet = $this->dom->createElement('WEIGHT_NET');
         $this->weightTot = $this->dom->createElement('WEIGHT_TOT');
         $this->weightBody->appendChild($this->weightNet);
         $this->weightBody->appendChild($this->weightTot);
         $this->adBody->appendChild($this->weightBody);
+
+        // Motor and price elements.
         $this->createMotorPriceElements();
+
+        // Registration.
         $reg_el = $this->dom->createElement('REGISTRATION', '0');
         $this->priceBody->appendChild($reg_el);
-        $this->CARAVAN_CONDITION = '';
-        $this->CARAVAN_WARRANTY = '';
-        $this->CARAVAN_EQUIPMENT = '';
+
+        // Other fields.
+        $this->MOBILE_HOME_EQUIPMENT = '';
         $this->DESCRIPTION = '';
         $this->CARAVAN_CONDITION_REPORT = '';
         $this->CAR_CONDITION_DOC = '';
         $this->createMoreInfoElements();
+
+        // Contact.
         $this->initializeContact();
         $this->contactBody->removeAttribute('PHONESALESRESERVATION');
+
+        // Other fields.
+        $this->MOBILE_HOME_LOCATION = '';
+        $this->NO_OF_SEATS = '';
+
+        // Engine.
+        $this->createEngineElements();
+        $this->engineBody->removeChild($this->engineFuelBody);
+
+        // Other fields.
+        $this->TRANSMISSION = '';
+        $this->WHEEL_DRIVE = '';
+        $this->MOBILE_HOME_CONDITION = '';
+        $this->MOBILE_HOME_WARRANTY = '';
+        $this->WARRANTY_DISTANCE = '';
+        $this->REGNO = '';
+        $this->NO_OF_OWNERS = '';
+        $this->REGISTRATION_FIRST = '';
         $this->VIDEO_URL = '';
-    }
-
-    public function setContactFax($fax)
-    {
-    }
-
-    public function setContactUrl($url)
-    {
     }
 
     public function createMotorPriceElements($vat_attribute = false)
@@ -73,14 +96,9 @@ class CaravanXml extends AdType
         $this->priceBody->removeChild($this->priceCurrencyBody);
     }
 
-    public function setAdType($type)
-    {
-        $this->CARAVAN_SALESFORM = $type;
-    }
-
     public function setSegment($segment)
     {
-        $this->CARAVAN_SEGMENT = $segment;
+        $this->MOBILE_HOME_SEGMENT = $segment;
     }
 
     public function setPhoneSalesReservation($reservation = true)

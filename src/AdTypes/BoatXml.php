@@ -3,13 +3,13 @@
 namespace eiriksm\FinnTransfer\AdTypes;
 
 use eiriksm\FinnTransfer\AdType;
-use eiriksm\FinnTransfer\Traits\ModelPropertyTrait;
-use eiriksm\FinnTransfer\Traits\MotorPriceTrait;
+use eiriksm\FinnTransfer\Traits\PriceTrait;
 
 class BoatXml extends AdType
 {
+    use PriceTrait;
 
-    protected $dtd = 'http://www.iad.no/dtd/IADIF-boat50.dtd';
+    protected $dtd = 'https://www.iad.no/dtd/IADIF-boat51.dtd';
 
     protected $documentType = 'IAD.IF.BOAT';
 
@@ -39,20 +39,30 @@ class BoatXml extends AdType
         $this->MOTOR_INCLUDED = '';
         $this->MAX_SPEED = '';
         $this->BOAT_EQUIPMENT = '';
-        $this->PRICE = '';
+
+        // Price.
+        $this->createPriceElements();
+
         $this->DESCRIPTION = '';
+
+        // More info.
         $this->createMoreInfoElements();
+
+        // Contact.
         $this->initializeContact();
+
         $this->LIGHTNUMBER = '';
         $this->MOTOR_AD_LOCATION = '';
         $this->VIDEO_URL = '';
     }
 
-    public function setMotorPrice($number, $currency = 'NOK')
+    public function setSegment($segment)
     {
+        $this->BOAT_CLASS = $segment;
     }
 
-    public function setIncludingMva($includes)
+    public function setMake($make)
     {
+        $this->BOAT_MAKE = $make;
     }
 }
