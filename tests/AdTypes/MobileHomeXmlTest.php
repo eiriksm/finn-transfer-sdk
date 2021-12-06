@@ -7,5 +7,5 @@ use eiriksm\FinnTransfer\AdTypes\MobileHomeXml;
 class MobileHomeXmlTest extends AdTypeTestBase
 {
 
-  protected $className = MobileHomeXml::class;
+    protected $className = MobileHomeXml::class;
 }

@@ -4,8 +4,8 @@ namespace eiriksm\FinnTransfer\Tests\AdTypes;
 
 use eiriksm\FinnTransfer\AdTypes\BoatMotorXml;
 
-class BoathMotorXmlTest extends AdTypeTestBase
+class BoatMotorXmlTest extends AdTypeTestBase
 {
 
-  protected $className = BoatMotorXml::class;
+    protected $className = BoatMotorXml::class;
 }

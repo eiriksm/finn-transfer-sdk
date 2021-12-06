@@ -7,5 +7,5 @@ use eiriksm\FinnTransfer\AdTypes\MotorMiscXml;
 class MotorMiscXmlTest extends AdTypeTestBase
 {
 
-  protected $className = MotorMiscXml::class;
+    protected $className = MotorMiscXml::class;
 }
