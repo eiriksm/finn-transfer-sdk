@@ -56,5 +56,4 @@ class AgriXml extends AdType
         }
         parent::__set($name, $value);
     }
-
 }

@@ -46,5 +46,4 @@ trait SegmentPropertyTrait
         $this->segmentTypeBody = $this->dom->createElement('TYPE');
         $this->segmentOuterBody->appendChild($this->segmentTypeBody);
     }
-
 }
