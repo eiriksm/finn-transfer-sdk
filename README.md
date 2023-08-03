@@ -1,5 +1,5 @@
 # finn-transfer-sdk
-[![Build Status](https://travis-ci.org/eiriksm/finn-transfer-sdk.svg?branch=master)](https://travis-ci.org/eiriksm/finn-transfer-sdk)
+[![Test](https://github.com/eiriksm/finn-transfer-sdk/actions/workflows/test.yml/badge.svg)](https://github.com/eiriksm/finn-transfer-sdk/actions/workflows/test.yml)
 
 SDK for transferring ads to finn.no
 
