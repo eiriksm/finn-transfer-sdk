@@ -4,25 +4,21 @@ namespace eiriksm\FinnTransfer\AdTypes;
 
 use eiriksm\FinnTransfer\AdType;
 use eiriksm\FinnTransfer\Traits\ModelPropertyTrait;
-use eiriksm\FinnTransfer\Traits\MotorPriceTrait;
+use eiriksm\FinnTransfer\Traits\SegmentPropertyTrait;
 
 class AgriXml extends AdType
 {
-    use ModelPropertyTrait;
+    use ModelPropertyTrait, SegmentPropertyTrait;
 
     protected $dtd = 'http://www.iad.no/dtd/IADIF-car-agri12.dtd';
 
     protected $adBodyTag = 'AGRI';
 
-    /**
-     * @var \DOMElement
-     */
-    private $segmentGroup;
-
     public function __construct($partner_id, $provider)
     {
         parent::__construct($partner_id, $provider);
-        $this->setSegment('');
+        $this->createSegmentProperty('AGRI_SEGMENT');
+        $this->adBody->appendChild($this->segmentOuterBody);
         $this->createModelProperty('AGRI_MODEL');
         $this->adBody->appendChild($this->modelOuterBody);
         $this->YEAR_MODEL = '';
@@ -52,7 +48,6 @@ class AgriXml extends AdType
         $this->initializeContact();
     }
 
-
     public function __set($name, $value)
     {
         if ($name == 'MILEAGE') {
@@ -62,16 +57,4 @@ class AgriXml extends AdType
         parent::__set($name, $value);
     }
 
-    public function setSegment($segment)
-    {
-        if (!isset($this->customTags['AGRI_SEGMENT'])) {
-            $this->AGRI_SEGMENT = '';
-            $this->segmentGroup = $this->dom->createElement('GROUP');
-            $segment_type = $this->dom->createElement('TYPE');
-            $segment_el = $this->customTags['AGRI_SEGMENT'];
-            $segment_el->appendChild($this->segmentGroup);
-            $segment_el->appendChild($segment_type);
-        }
-        $this->segmentGroup->nodeValue = $segment;
-    }
 }
