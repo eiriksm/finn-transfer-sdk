@@ -4,7 +4,7 @@ namespace eiriksm\FinnTransfer;
 
 use GuzzleHttp\Psr7\MultipartStream;
 use GuzzleHttp\Psr7\Request;
-use function GuzzleHttp\Psr7\stream_for;
+use GuzzleHttp\Psr7\Utils;
 
 class Client implements ClientInterface
 {
@@ -92,7 +92,7 @@ class Client implements ClientInterface
    */
     public function transfer($body, $type = 'xml')
     {
-        $post_body = stream_for($body);
+        $post_body = Utils::streamFor($body);
         $multipart = new MultipartStream([
         [
         'name' => 'fil',
