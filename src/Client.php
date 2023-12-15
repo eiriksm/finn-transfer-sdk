@@ -25,9 +25,7 @@ class Client implements ClientInterface
         $this->isZip = $isZip;
     }
 
-    const PROD_URL = 'https://www.finn.no/finn/import/fileimport';
-
-    protected $url = 'https://import.finn.no/finn/import/fileimport';
+    protected $liveMode = false;
 
     private $isZip = false;
 
@@ -51,15 +49,15 @@ class Client implements ClientInterface
 
     public function setLiveMode()
     {
-        $this->url = self::PROD_URL;
+        $this->liveMode = TRUE;
     }
 
   /**
-   * @param string $url
+   * @return bool
    */
-    public function setUrl($url)
+    public function isLiveMode()
     {
-        $this->url = $url;
+        return $this->liveMode;
     }
 
   /**
@@ -100,11 +98,26 @@ class Client implements ClientInterface
         'filename' => "file.$type"
         ]
         ]);
-        $this->request = new Request('POST', $this->url, [], $multipart);
+
+        $headers = [];
+        if ($this->isLiveMode()) {
+          $url = 'https://www.finn.no/finn/import/fileimport';
+        }
+        else {
+          // Test mode.
+          $url = 'https://import.finn.no/finn/import/fileimport';
+          $headers = [
+            'Authorization' => 'Basic '. base64_encode('partner:testimport'),
+          ];
+        }
+
+        $this->request = new Request('POST', $url, $headers, $multipart);
+
         if (!$this->isZip) {
             $this->requestBody = $body;
         }
         $res = $this->client->send($this->request);
+
         return $res;
     }
 
