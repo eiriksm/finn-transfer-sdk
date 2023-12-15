@@ -49,7 +49,7 @@ class Client implements ClientInterface
 
     public function setLiveMode()
     {
-        $this->liveMode = TRUE;
+        $this->liveMode = true;
     }
 
   /**
@@ -101,14 +101,14 @@ class Client implements ClientInterface
 
         $headers = [];
         if ($this->isLiveMode()) {
-          $url = 'https://www.finn.no/finn/import/fileimport';
+            $url = 'https://www.finn.no/finn/import/fileimport';
         }
         else {
           // Test mode.
-          $url = 'https://import.finn.no/finn/import/fileimport';
-          $headers = [
-            'Authorization' => 'Basic '. base64_encode('partner:testimport'),
-          ];
+            $url = 'https://import.finn.no/finn/import/fileimport';
+            $headers = [
+                'Authorization' => 'Basic '. base64_encode('partner:testimport'),
+            ];
         }
 
         $this->request = new Request('POST', $url, $headers, $multipart);
