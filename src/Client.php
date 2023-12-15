@@ -103,7 +103,7 @@ class Client implements ClientInterface
         if ($this->isLiveMode()) {
             $url = 'https://www.finn.no/finn/import/fileimport';
         } else {
-          // Test mode.
+            // Test mode.
             $url = 'https://import.finn.no/finn/import/fileimport';
             $headers = [
                 'Authorization' => 'Basic '. base64_encode('partner:testimport'),
