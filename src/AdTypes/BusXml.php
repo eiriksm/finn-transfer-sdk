@@ -3,12 +3,14 @@
 namespace eiriksm\FinnTransfer\AdTypes;
 
 use eiriksm\FinnTransfer\AdType;
+use eiriksm\FinnTransfer\Traits\InteriorMeasurementsTrait;
 use eiriksm\FinnTransfer\Traits\ModelPropertyTrait;
 
 class BusXml extends AdType
 {
 
     use ModelPropertyTrait;
+    use InteriorMeasurementsTrait;
 
     protected $dtd = 'http://www.iad.no/dtd/IADIF-bus1.dtd';
 

@@ -3,12 +3,14 @@
 namespace eiriksm\FinnTransfer\AdTypes;
 
 use eiriksm\FinnTransfer\AdType;
+use eiriksm\FinnTransfer\Traits\InteriorMeasurementsTrait;
 use eiriksm\FinnTransfer\Traits\ModelPropertyTrait;
 
 class VanTruckXml extends AdType
 {
 
     use ModelPropertyTrait;
+    use InteriorMeasurementsTrait;
 
     protected $dtd = 'http://www.iad.no/dtd/IADIF-van-truck-10.dtd';
 

@@ -25,23 +25,22 @@ trait InteriorMeasurementsTrait
      */
     protected $interiorMeasurementsHeightBody;
 
-    public function setInteriorMeasurements()
-    {
-        if (!isset($this->interiorMeasurementsBody)) {
-            $this->createInteriorMeasurementsElements();
-        }
-    }
-
     protected function createInteriorMeasurementsElements()
     {
-        $this->interiorMeasurementsBody = $this->dom->createElement('INTERIOR_MEASUREMENTS');
-        $this->interiorMeasurementsLengthBody = $this->dom->createElement('LENGTH');
-        $this->interiorMeasurementsWidthBody = $this->dom->createElement('WIDTH');
-        $this->interiorMeasurementsHeightBody = $this->dom->createElement('HEIGHT');
-        $this->interiorMeasurementsBody->appendChild($this->interiorMeasurementsHeightBody);
-        $this->interiorMeasurementsBody->appendChild($this->interiorMeasurementsWidthBody);
-        $this->interiorMeasurementsBody->appendChild($this->interiorMeasurementsLengthBody);
-        $this->adBody->appendChild($this->interiorMeasurementsBody);
+        if (!isset($this->interiorMeasurementsBody)) {
+            $this->interiorMeasurementsBody = $this->dom->createElement('INTERIOR_MEASUREMENTS');
+
+            $this->interiorMeasurementsLengthBody = $this->dom->createElement('LENGTH');
+            $this->interiorMeasurementsBody->appendChild($this->interiorMeasurementsLengthBody);
+
+            $this->interiorMeasurementsWidthBody = $this->dom->createElement('WIDTH');
+            $this->interiorMeasurementsBody->appendChild($this->interiorMeasurementsWidthBody);
+
+            $this->interiorMeasurementsHeightBody = $this->dom->createElement('HEIGHT');
+            $this->interiorMeasurementsBody->appendChild($this->interiorMeasurementsHeightBody);
+
+            $this->adBody->appendChild($this->interiorMeasurementsBody);
+        }
     }
 
     public function setInteriorMeasurementsLength($length)
