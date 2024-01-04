@@ -3,12 +3,14 @@
 namespace eiriksm\FinnTransfer\AdTypes;
 
 use eiriksm\FinnTransfer\AdType;
+use eiriksm\FinnTransfer\Traits\InteriorMeasurementsTrait;
 use eiriksm\FinnTransfer\Traits\ModelPropertyTrait;
 
 class VanTruckXml extends AdType
 {
 
     use ModelPropertyTrait;
+    use InteriorMeasurementsTrait;
 
     protected $dtd = 'http://www.iad.no/dtd/IADIF-van-truck-10.dtd';
 
@@ -44,7 +46,7 @@ class VanTruckXml extends AdType
         $this->CHASSIS_NO = '';
         $this->BOX_TYPE = '';
         $this->BOX_LENGTH = '';
-        $this->INTERIOR_MEASUREMENTS = '';
+        $this->createInteriorMeasurementsElements();
         $this->TAILLIFT = '';
         $this->DESCRIPTION = '';
         $this->createMoreInfoElements();
