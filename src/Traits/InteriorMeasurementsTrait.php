@@ -43,6 +43,11 @@ trait InteriorMeasurementsTrait
         }
     }
 
+    public function setInteriorMeasurements()
+    {
+        $this->createInteriorMeasurementsElements();
+    }
+
     public function setInteriorMeasurementsLength($length)
     {
         $this->interiorMeasurementsLengthBody->nodeValue = $length;
