@@ -44,7 +44,7 @@ class VanTruckXml extends AdType
         $this->CHASSIS_NO = '';
         $this->BOX_TYPE = '';
         $this->BOX_LENGTH = '';
-        $this->INTERIOR_MEASUREMENTS = '';
+        $this->createInteriorMeasurementsElements();
         $this->TAILLIFT = '';
         $this->DESCRIPTION = '';
         $this->createMoreInfoElements();

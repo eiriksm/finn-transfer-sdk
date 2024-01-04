@@ -5,6 +5,7 @@ namespace eiriksm\FinnTransfer;
 use eiriksm\FinnTransfer\Traits\ContactTrait;
 use eiriksm\FinnTransfer\Traits\EngineTrait;
 use eiriksm\FinnTransfer\Traits\HeaderTrait;
+use eiriksm\FinnTransfer\Traits\InteriorMeasurementsTrait;
 use eiriksm\FinnTransfer\Traits\MoreInfoTrait;
 use eiriksm\FinnTransfer\Traits\MotorPriceTrait;
 use eiriksm\FinnTransfer\Traits\ObjectTrait;
@@ -13,6 +14,7 @@ abstract class AdType extends XmlBase implements AdTypeInterface
 {
     use MotorPriceTrait;
     use EngineTrait;
+    use InteriorMeasurementsTrait;
     use MoreInfoTrait;
     use ContactTrait;
     use HeaderTrait;
