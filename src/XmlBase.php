@@ -73,7 +73,7 @@ class XmlBase
         return $this->dom->saveXML();
     }
 
-    public function onValidateError($no, $string, $file, $line, $context)
+    public function onValidateError($no, $string, $file, $line, $context = null)
     {
         $this->validationErrors[] = $string;
     }
