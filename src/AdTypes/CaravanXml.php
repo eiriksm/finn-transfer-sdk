@@ -14,7 +14,7 @@ class CaravanXml extends AdType
         createMotorPriceElements as protected createMotorPriceElementsTrait;
     }
 
-    protected $dtd = 'http://www.finn.no/dtd/IADIF-caravan-27.dtd';
+    protected $dtd = 'https://www.iad.no/dtd/IADIF-caravan-29.dtd';
 
     protected $documentType = 'IAD.IF.CARAVAN';
 
@@ -57,10 +57,6 @@ class CaravanXml extends AdType
         $this->initializeContact();
         $this->contactBody->removeAttribute('PHONESALESRESERVATION');
         $this->VIDEO_URL = '';
-    }
-
-    public function setContactFax($fax)
-    {
     }
 
     public function setContactUrl($url)

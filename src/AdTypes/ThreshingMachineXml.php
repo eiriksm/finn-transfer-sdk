@@ -4,13 +4,12 @@ namespace eiriksm\FinnTransfer\AdTypes;
 
 use eiriksm\FinnTransfer\AdType;
 use eiriksm\FinnTransfer\Traits\ModelPropertyTrait;
-use eiriksm\FinnTransfer\Traits\MotorPriceTrait;
 
 class ThreshingMachineXml extends AdType
 {
     use ModelPropertyTrait;
 
-    protected $dtd = 'http://www.iad.no/dtd/IADIF-threshing_machine-21.dtd';
+    protected $dtd = 'https://www.iad.no/dtd/IADIF-threshing_machine-24.dtd';
 
     protected $documentType = 'IAD.IF.THRESHING_MACHINE';
 
@@ -30,6 +29,7 @@ class ThreshingMachineXml extends AdType
         $this->DESCRIPTION = '';
         $this->createMoreInfoElements();
         $this->initializeContact();
+        $this->VIDEO_URL = '';
     }
 
     public function __set($name, $value)
@@ -43,6 +43,22 @@ class ThreshingMachineXml extends AdType
 
     public function setSegment($segment)
     {
-      // Empty on purpse. There is no segment.
+      // Empty on purpose. There is no segment.
+    }
+
+    public function addEquipment($equipment_items)
+    {
+        // Remove initial empty tag.
+        $tags = $this->dom->getElementsByTagName('TRESHING_MACHINE_EQUIPMENT');
+        // We have only 1 initial tag.
+        $tag = $tags->item(0);
+        $tag->parentNode->removeChild($tag);
+
+        // Set values.
+        foreach ($equipment_items as $equipment_value) {
+            $equipment_el = $this->dom->createElement('TRESHING_MACHINE_EQUIPMENT');
+            $equipment_el->nodeValue = $equipment_value;
+            $this->customTags['DESCRIPTION']->parentNode->insertBefore($equipment_el, $this->customTags['DESCRIPTION']);
+        }
     }
 }

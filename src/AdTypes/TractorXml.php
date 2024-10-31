@@ -13,7 +13,7 @@ class TractorXml extends AdType
         setMotorPrice as protected setMotorPriceTrait;
     }
 
-    protected $dtd = 'http://www.iad.no/dtd/IADIF-tractor-21.dtd';
+    protected $dtd = 'https://www.iad.no/dtd/IADIF-tractor-24.dtd';
 
     protected $documentType = 'IAD.IF.TRACTOR';
 
@@ -40,6 +40,7 @@ class TractorXml extends AdType
         $this->DESCRIPTION = '';
         $this->createMoreInfoElements();
         $this->initializeContact();
+        $this->VIDEO_URL = '';
     }
 
     public function __set($name, $value)

@@ -12,7 +12,7 @@ class BusXml extends AdType
     use ModelPropertyTrait;
     use InteriorMeasurementsTrait;
 
-    protected $dtd = 'http://www.iad.no/dtd/IADIF-bus1.dtd';
+    protected $dtd = 'https://www.iad.no/dtd/IADIF-bus5.dtd';
 
     protected $documentType = 'IAD.IF.BUS';
 
@@ -51,10 +51,27 @@ class BusXml extends AdType
         $this->DESCRIPTION = '';
         $this->createMoreInfoElements();
         $this->initializeContact();
+        $this->VIDEO_URL = '';
     }
 
     public function setSegment($segment)
     {
         $this->BUS_SEGMENT = $segment;
+    }
+
+    public function addEquipment($equipment_items)
+    {
+        // Remove initial empty tag.
+        $tags = $this->dom->getElementsByTagName('BUS_EQUIPMENT');
+        // We have only 1 initial tag.
+        $tag = $tags->item(0);
+        $tag->parentNode->removeChild($tag);
+
+        // Set values.
+        foreach ($equipment_items as $equipment_value) {
+            $equipment_el = $this->dom->createElement('BUS_EQUIPMENT');
+            $equipment_el->nodeValue = $equipment_value;
+            $this->customTags['LENGTH_CM']->parentNode->insertBefore($equipment_el, $this->customTags['LENGTH_CM']);
+        }
     }
 }
