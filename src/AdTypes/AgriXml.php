@@ -44,9 +44,9 @@ class AgriXml extends AdType
         $this->WORKLOAD = '';
         $this->CHASSIS_NO = '';
         $this->DESCRIPTION = '';
+        $this->VIDEO_URL = '';
         $this->createMoreInfoElements();
         $this->initializeContact();
-        $this->VIDEO_URL = '';
     }
 
     public function __set($name, $value)
