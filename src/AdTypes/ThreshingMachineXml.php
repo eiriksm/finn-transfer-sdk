@@ -49,11 +49,15 @@ class ThreshingMachineXml extends AdType
     public function addEquipment($equipment_items)
     {
         // Remove initial empty tag.
-        $this->customTags['TRESHING_MACHINE_EQUIPMENT']->remove();
+        $tags = $this->dom->getElementsByTagName('TRESHING_MACHINE_EQUIPMENT');
+        // We have only 1 initial tag.
+        $tag = $tags->item(0);
+        $tag->parentNode->removeChild($tag);
+
+        // Set values.
         foreach ($equipment_items as $equipment_value) {
             $equipment_el = $this->dom->createElement('TRESHING_MACHINE_EQUIPMENT');
             $equipment_el->nodeValue = $equipment_value;
-            $this->equipment[] = $equipment_el;
             $this->customTags['DESCRIPTION']->parentNode->insertBefore($equipment_el, $this->customTags['DESCRIPTION']);
         }
     }

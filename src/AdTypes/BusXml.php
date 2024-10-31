@@ -62,11 +62,15 @@ class BusXml extends AdType
     public function addEquipment($equipment_items)
     {
         // Remove initial empty tag.
-        $this->customTags['BUS_EQUIPMENT']->remove();
+        $tags = $this->dom->getElementsByTagName('BUS_EQUIPMENT');
+        // We have only 1 initial tag.
+        $tag = $tags->item(0);
+        $tag->parentNode->removeChild($tag);
+
+        // Set values.
         foreach ($equipment_items as $equipment_value) {
             $equipment_el = $this->dom->createElement('BUS_EQUIPMENT');
             $equipment_el->nodeValue = $equipment_value;
-            $this->equipment[] = $equipment_el;
             $this->customTags['LENGTH_CM']->parentNode->insertBefore($equipment_el, $this->customTags['LENGTH_CM']);
         }
     }
