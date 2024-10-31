@@ -12,7 +12,7 @@ class BusXml extends AdType
     use ModelPropertyTrait;
     use InteriorMeasurementsTrait;
 
-    protected $dtd = 'http://www.iad.no/dtd/IADIF-bus1.dtd';
+    protected $dtd = 'https://www.iad.no/dtd/IADIF-bus5.dtd';
 
     protected $documentType = 'IAD.IF.BUS';
 
@@ -31,6 +31,7 @@ class BusXml extends AdType
         $this->WEIGHT = '';
         $this->REGISTRATION_FIRST = '';
         $this->NO_OF_SEATS = '';
+        // @todo Change to multi value.
         $this->BUS_EQUIPMENT = '';
         $this->LENGTH_CM = '';
         $this->TRANSMISSION_SPECIFICATION = '';
@@ -51,6 +52,7 @@ class BusXml extends AdType
         $this->DESCRIPTION = '';
         $this->createMoreInfoElements();
         $this->initializeContact();
+        $this->VIDEO_URL = '';
     }
 
     public function setSegment($segment)

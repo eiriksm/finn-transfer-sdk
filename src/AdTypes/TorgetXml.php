@@ -3,13 +3,11 @@
 namespace eiriksm\FinnTransfer\AdTypes;
 
 use eiriksm\FinnTransfer\AdType;
-use eiriksm\FinnTransfer\Traits\ModelPropertyTrait;
-use eiriksm\FinnTransfer\Traits\MotorPriceTrait;
 
 class TorgetXml extends AdType
 {
 
-    protected $dtd = 'https://www.finn.no/dtd/IADIF-BitsandPieces62.dtd';
+    protected $dtd = 'https://www.iad.no/dtd/IADIF-BitsandPieces63.dtd';
 
     protected $documentType = 'IAD.IF.BITSPIECES';
 

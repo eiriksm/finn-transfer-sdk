@@ -14,7 +14,7 @@ class AgriToolsXml extends AdType
         createMotorPriceElements as protected createMotorPriceElementsTrait;
     }
 
-    protected $dtd = 'http://www.iad.no/dtd/IADIF-agri_tool-23.dtd';
+    protected $dtd = 'https://www.iad.no/dtd/IADIF-agri_tool-26.dtd';
 
     protected $documentType = 'IAD.IF.AGRI_TOOLS';
 
@@ -32,6 +32,7 @@ class AgriToolsXml extends AdType
         $this->DESCRIPTION = '';
         $this->createMoreInfoElements();
         $this->initializeContact();
+        $this->VIDEO_URL = '';
     }
 
     public function setSegment($segment)

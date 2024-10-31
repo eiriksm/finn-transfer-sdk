@@ -4,13 +4,12 @@ namespace eiriksm\FinnTransfer\AdTypes;
 
 use eiriksm\FinnTransfer\AdType;
 use eiriksm\FinnTransfer\Traits\ModelPropertyTrait;
-use eiriksm\FinnTransfer\Traits\MotorPriceTrait;
 
 class ThreshingMachineXml extends AdType
 {
     use ModelPropertyTrait;
 
-    protected $dtd = 'http://www.iad.no/dtd/IADIF-threshing_machine-21.dtd';
+    protected $dtd = 'https://www.iad.no/dtd/IADIF-threshing_machine-24.dtd';
 
     protected $documentType = 'IAD.IF.THRESHING_MACHINE';
 
@@ -26,10 +25,12 @@ class ThreshingMachineXml extends AdType
         $this->createMotorPriceElements(true);
         $this->createEngineElements();
         $this->WEIGHT = '';
+        // @todo Change to multi value.
         $this->TRESHING_MACHINE_EQUIPMENT = '';
         $this->DESCRIPTION = '';
         $this->createMoreInfoElements();
         $this->initializeContact();
+        $this->VIDEO_URL = '';
     }
 
     public function __set($name, $value)
