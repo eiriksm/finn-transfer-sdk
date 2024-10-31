@@ -49,6 +49,10 @@ class McXml extends AdType
         $this->contactBody->removeChild($this->contactURLBody);
     }
 
+    public function setContactUrl($url)
+    {
+    }
+
     public function setMainCategory($value)
     {
         $this->MC_MAIN_CATEGORY = $value;
