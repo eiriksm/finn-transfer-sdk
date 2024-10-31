@@ -25,7 +25,6 @@ class ThreshingMachineXml extends AdType
         $this->createMotorPriceElements(true);
         $this->createEngineElements();
         $this->WEIGHT = '';
-        // @todo Change to multi value.
         $this->TRESHING_MACHINE_EQUIPMENT = '';
         $this->DESCRIPTION = '';
         $this->createMoreInfoElements();
@@ -44,6 +43,19 @@ class ThreshingMachineXml extends AdType
 
     public function setSegment($segment)
     {
-      // Empty on purpse. There is no segment.
+      // Empty on purpose. There is no segment.
+    }
+
+    public function addEquipment($equipment_items)
+    {
+        // Remove initial empty tag.
+        $this->customTags['TRESHING_MACHINE_EQUIPMENT']->remove();
+        foreach ($equipment_items as $equipment_value)
+        {
+            $equipment_el = $this->dom->createElement('TRESHING_MACHINE_EQUIPMENT');
+            $equipment_el->nodeValue = $equipment_value;
+            $this->equipment[] = $equipment_el;
+            $this->customTags['DESCRIPTION']->parentNode->insertBefore($equipment_el, $this->customTags['DESCRIPTION']);
+        }
     }
 }
