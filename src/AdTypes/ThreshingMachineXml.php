@@ -50,8 +50,7 @@ class ThreshingMachineXml extends AdType
     {
         // Remove initial empty tag.
         $this->customTags['TRESHING_MACHINE_EQUIPMENT']->remove();
-        foreach ($equipment_items as $equipment_value)
-        {
+        foreach ($equipment_items as $equipment_value) {
             $equipment_el = $this->dom->createElement('TRESHING_MACHINE_EQUIPMENT');
             $equipment_el->nodeValue = $equipment_value;
             $this->equipment[] = $equipment_el;
