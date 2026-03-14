@@ -10,7 +10,7 @@ class MmoXml extends XmlBase
     use HeaderTrait;
     use ObjectTrait;
 
-    protected $dtd = 'http://www.finn.no/dtd/IADIF-mmo20.dtd';
+    protected $dtd = 'https://www.finn.no/dtd/IADIF-mmo20.dtd';
     protected $documentType = 'IAD.IF.MMO';
     protected $zip;
     protected $imageDelta = 1;
