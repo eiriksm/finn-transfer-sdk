@@ -12,7 +12,7 @@ class VanTruckXml extends AdType
     use ModelPropertyTrait;
     use InteriorMeasurementsTrait;
 
-    protected $dtd = 'http://www.iad.no/dtd/IADIF-van-truck-10.dtd';
+    protected $dtd = 'https://www.iad.no/dtd/IADIF-van-truck-13.dtd';
 
     protected $documentType = 'IAD.IF.VAN_TRUCK';
 
@@ -53,6 +53,7 @@ class VanTruckXml extends AdType
         $this->initializeContact();
         $this->CAR_LOCATION = '';
         $this->PALLET = '';
+        $this->VIDEO_URL = '';
     }
 
     public function setSegment($segment)

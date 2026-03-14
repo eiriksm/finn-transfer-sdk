@@ -14,7 +14,7 @@ class McXml extends AdType
         createMotorPriceElements as protected createMotorPriceElementsTrait;
     }
 
-    protected $dtd = 'http://www.finn.no/dtd/IADIF-mc76.dtd';
+    protected $dtd = 'https://www.iad.no/dtd/IADIF-mc78.dtd';
 
     protected $documentType = 'IAD.IF.MC';
 
@@ -46,12 +46,7 @@ class McXml extends AdType
         $this->VIDEO_URL = '';
         $this->initializeContact();
         $this->contactBody->removeAttribute('PHONESALESRESERVATION');
-        $this->contactBody->removeChild($this->contactFaxBody);
         $this->contactBody->removeChild($this->contactURLBody);
-    }
-
-    public function setContactFax($fax)
-    {
     }
 
     public function setContactUrl($url)

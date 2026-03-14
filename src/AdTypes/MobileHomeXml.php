@@ -14,7 +14,7 @@ class MobileHomeXml extends AdType
         createMotorPriceElements as protected createMotorPriceElementsTrait;
     }
 
-    protected $dtd = 'https://www.iad.no/dtd/IADIF-mobilehome-11.dtd';
+    protected $dtd = 'https://www.iad.no/dtd/IADIF-mobilehome-12.dtd';
 
     protected $documentType = 'IAD.IF.MOBILE_HOME';
 

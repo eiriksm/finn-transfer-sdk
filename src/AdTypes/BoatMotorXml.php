@@ -37,7 +37,6 @@ class BoatMotorXml extends AdType
         // Contact.
         $this->initializeContact();
         $this->contactBody->removeAttribute('PHONESALESRESERVATION');
-        $this->contactBody->removeChild($this->contactFaxBody);
     }
 
     public function setSegment($segment)
@@ -51,10 +50,6 @@ class BoatMotorXml extends AdType
     }
 
     public function setPhoneSalesReservation($reservation = true)
-    {
-    }
-
-    public function setContactFax($fax)
     {
     }
 }

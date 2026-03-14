@@ -16,7 +16,7 @@ class CarXml extends AdType
         createMotorPriceElements as protected createMotorPriceElementsTrait;
     }
 
-    protected $dtd = 'https://www.iad.no/dtd/IADIF-car35.dtd';
+    protected $dtd = 'https://www.iad.no/dtd/IADIF-car37.dtd';
 
     protected $documentType = 'IAD.IF.CAR';
 
@@ -59,11 +59,14 @@ class CarXml extends AdType
         $this->INTERIOR_COLOUR = '';
         $this->MILEAGE = '';
         $this->REGISTRATION_FIRST = '';
+        $this->EU_CHECK_LAST = '';
+        $this->EU_CHECK_NEXT = '';
         $this->NO_OF_OWNERS = '';
         $this->WARRANTY = '';
         $this->WARRANTY_DURATION = '';
         $this->WARRANTY_DISTANCE = '';
         $this->CAR_CONDITION_DOC = '';
+        $this->CONDITION_REPORT_URL = '';
         $this->RIGHT_TO_EXCHANGE = '';
         $this->SERVICE_PLAN_FOLLOWED = '';
         $this->CAR_SERVICE_HISTORY = '';
@@ -76,7 +79,6 @@ class CarXml extends AdType
         $this->createMotorPriceElements();
         $this->initializeContact();
         $this->contactBody->removeAttribute('PHONESALESRESERVATION');
-        $this->contactBody->removeChild($this->contactFaxBody);
     }
 
     public function addEquipment($equipment_value)

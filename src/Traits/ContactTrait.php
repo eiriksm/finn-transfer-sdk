@@ -18,8 +18,6 @@ trait ContactTrait
 
     protected $contactEmailBody;
 
-    protected $contactFaxBody;
-
     protected $contactURLBody;
 
     public function setPhoneSalesReservation($reservation = true)
@@ -52,10 +50,11 @@ trait ContactTrait
         $this->contactEmailBody->nodeValue = $email;
     }
 
+    /**
+     * @deprecated in 1.1 and will be removed soon.
+     */
     public function setContactFax($fax)
     {
-        $this->initializeContact();
-        $this->contactFaxBody->nodeValue = $fax;
     }
 
     public function setContactUrl($url)
@@ -77,8 +76,6 @@ trait ContactTrait
             $this->contactBody->appendChild($this->contactMobileBody);
             $this->contactEmailBody = $this->dom->createElement('EMAIL');
             $this->contactBody->appendChild($this->contactEmailBody);
-            $this->contactFaxBody = $this->dom->createElement('FAX');
-            $this->contactBody->appendChild($this->contactFaxBody);
             $this->contactURLBody = $this->dom->createElement('URL');
             $this->contactBody->appendChild($this->contactURLBody);
             $this->adBody->appendChild($this->contactBody);

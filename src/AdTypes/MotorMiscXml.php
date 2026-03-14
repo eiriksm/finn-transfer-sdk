@@ -9,7 +9,7 @@ class MotorMiscXml extends AdType
 {
     use PriceTrait;
 
-    protected $dtd = 'https://www.iad.no/dtd/IADIF-motor_misc51.dtd';
+    protected $dtd = 'https://www.iad.no/dtd/IADIF-motor_misc52.dtd';
 
     protected $documentType = 'IAD.IF.MOTORMISC';
 

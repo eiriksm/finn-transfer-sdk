@@ -9,7 +9,7 @@ class BoatXml extends AdType
 {
     use PriceTrait;
 
-    protected $dtd = 'https://www.iad.no/dtd/IADIF-boat51.dtd';
+    protected $dtd = 'https://www.iad.no/dtd/IADIF-boat52.dtd';
 
     protected $documentType = 'IAD.IF.BOAT';
 

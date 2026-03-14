@@ -32,6 +32,7 @@ class AgriToolsXml extends AdType
         $this->DESCRIPTION = '';
         $this->createMoreInfoElements();
         $this->initializeContact();
+        $this->VIDEO_URL = '';
     }
 
     public function setSegment($segment)
