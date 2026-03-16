@@ -10,7 +10,7 @@ class StopXml extends XmlBase
     use HeaderTrait;
     use ObjectTrait;
 
-    protected $dtd = 'http://www.iad.no/dtd/IADIF-stop30.dtd';
+    protected $dtd = 'https://www.iad.no/dtd/IADIF-stop30.dtd';
     protected $documentType = 'IAD.IF.STOP';
 
     public function __construct($partner_id, $provider)

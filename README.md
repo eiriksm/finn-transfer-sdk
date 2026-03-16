@@ -33,7 +33,7 @@ $ad->setZipCode(9300);
 // And maybe something a bit more specific. It has a 200 horse power engine.
 $ad->setEngineEffect(200);
 // We can also set arbitrary properties that are defined in the DTD for this ad
-// type. For tractor that would be http://www.iad.no/dtd/IADIF-tractor-21.dtd
+// type. For tractor that would be https://www.iad.no/dtd/IADIF-tractor-21.dtd
 // where we can see there is something called TRACTOR_EQUIPMENT for example. We
 // can find a list of valid values at https://www.finn.no/finn/referencevalue?adType=TRACTOR&xmlCode=TRACTOR_EQUIPMENT
 $ad->TRACTOR_EQUIPMENT = 'KOMPLETT_FRONTLASTER';
